@@ -1,5 +1,5 @@
 // src/components/QuantityControl.js
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Control = styled.div`
@@ -24,15 +24,13 @@ const Button = styled.button`
 
 const QuantityInput = styled.input`
   width: 40px;
-   height: 40px;
+  height: 40px;
   text-align: center;
   border: 1px solid #000;
   margin: 0 5px;
 `;
 
-const QuantityControl = () => {
-  const [quantity, setQuantity] = useState(0);
-
+const QuantityControl = ({ quantity, setQuantity }) => {
   const increase = () => setQuantity(quantity + 1);
   const decrease = () => setQuantity(Math.max(0, quantity - 1));
 

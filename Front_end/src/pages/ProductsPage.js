@@ -1,6 +1,5 @@
-// src/pages/ProductsPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ProductList from '../components/products/ProductList';
 import TopNav from '../components/home/TopNav';
 import Header from '../components/home/Header';
@@ -9,6 +8,8 @@ import Footer from '../components/home/Footer';
 const ProductsPage = () => {
   const { categoryId } = useParams();
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,11 +28,22 @@ const ProductsPage = () => {
     fetchProducts();
   }, [categoryId]);
 
+  const addToCart = (product, quantity) => {
+    setCart(prevCart => [...prevCart, { ...product, quantity }]);
+  };
+
+  const handleCheckout = () => {
+    navigate('/cart', { state: { cart } });
+  };
+
   return (
     <div>
       <TopNav />
       <Header />
-      <ProductList products={products} />
+      <ProductList products={products} addToCart={addToCart} />
+      {cart.length > 0 && (
+        <button onClick={handleCheckout}>Proceed to Checkout</button>
+      )}
       <Footer />
     </div>
   );

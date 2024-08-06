@@ -41,3 +41,10 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+
+#git clone <repo link>
+#git pull
+
+#git branch utsav
+#get checkout utsav
+#push on this branch

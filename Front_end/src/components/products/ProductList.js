@@ -1,4 +1,3 @@
-// src/components/ProductList.js
 import React from 'react';
 import styled from 'styled-components';
 import ProductCard from './productCard';
@@ -9,10 +8,10 @@ const List = styled.div`
   justify-content: space-around;
 `;
 
-const ProductList = ({ products }) => (
+const ProductList = ({ products, addToCart }) => (
   <List>
     {products.map(product => (
-      <ProductCard key={product.id} product={product} />
+      <ProductCard key={product.id} product={product} addToCart={addToCart} />
     ))}
   </List>
 );

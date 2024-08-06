@@ -1,5 +1,4 @@
-// src/components/ProductCard.js
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import QuantityControl from './QuntityControl';
 
@@ -8,7 +7,7 @@ const Card = styled.div`
   align-items: center;
   border: 1px solid var(--nord3);
   border-radius: 8px;
-  background-color: #fffff;
+  background-color: #ffffff;
   color: var(--nord6);
   margin: 10px;
   width: 1200px;
@@ -41,15 +40,15 @@ const Content = styled.div`
 
 const Title = styled.h2`
   font-size: 2em;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   color: #000;
 `;
 
 const Details = styled.p`
   font-size: 1em;
   color: #000;
-   margin-bottom:40px;
-  background-color: #fffff;
+  margin-bottom: 40px;
+  background-color: #ffffff;
   padding: 5px;
   border-radius: 4px;
 `;
@@ -60,18 +59,42 @@ const Price = styled.p`
   color: #000;
 `;
 
-const ProductCard = ({ product }) => (
-  <Card>
-    <ImageWrapper>
-      <Image src={product.image_url} alt={product.name} />
-    </ImageWrapper>
-    <Content>
-      <Title>{product.name}</Title>
-      <Details>{product.description}</Details>
-      <Price>Price: ${product.price}</Price>
-      <QuantityControl />
-    </Content>
-  </Card>
-);
+const AddToCartButton = styled.button`
+  background-color: ${props => (props.disabled ? '#ccc' : '#ff8c00')};
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  font-size: 1em;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: ${props => (props.disabled ? '#ccc' : '#ffa500')};
+  }
+`;
+
+const ProductCard = ({ product, addToCart }) => {
+  const [quantity, setQuantity] = useState(0);
+
+  return (
+    <Card>
+      <ImageWrapper>
+        <Image src={product.image_url} alt={product.name} />
+      </ImageWrapper>
+      <Content>
+        <Title>{product.name}</Title>
+        <Details>{product.description}</Details>
+        <Price>Price: ${product.price}</Price>
+        <QuantityControl quantity={quantity} setQuantity={setQuantity} />
+        <AddToCartButton
+          disabled={quantity === 0}
+          onClick={() => addToCart(product, quantity)}
+        >
+          Add to Cart
+        </AddToCartButton>
+      </Content>
+    </Card>
+  );
+};
 
 export default ProductCard;
