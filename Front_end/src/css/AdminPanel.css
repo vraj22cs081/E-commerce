@@ -1,0 +1,144 @@
+/* Scoped styling for Admin Panel */
+.admin-page {
+    background: linear-gradient(to bottom right, #ffffff, #d1c4e9); /* Page background gradient specific to admin page */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.admin-container {
+    padding: 30px;
+    max-width: 1000px; /* Broadened form */
+    width: 800px; /* Full width for responsive design */
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom right, #ffffff, #d1c4e9);
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    left: 0; /* Center form horizontally */
+    top: 0; /* Center form vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents */ 
+}
+
+.admin-container h1 {
+    text-align: center;
+    color: #6a1b9a; /* Vibrant color for the header */
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width of container */
+}
+
+.admin-form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #4a148c; /* Dark purple for labels */
+    font-size: 1.1rem;
+}
+
+.admin-form input,
+.admin-form textarea {
+    padding: 14px; /* Increased padding for input fields */
+    margin: 5px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* More rounded corners */
+    width: calc(100% - 30px); /* Ensure inputs fit well inside the form */
+    font-size: 1rem;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+    border-color: #6a1b9a; /* Matching border color on focus */
+    outline: none;
+}
+
+.admin-form button {
+    padding: 14px 20px;
+    background-color: #6a1b9a; /* Light matching color for buttons */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.admin-form button:hover {
+    background-color: #4a148c; /* Darker shade on hover */
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    width: 100%; /* Full width of container */
+}
+
+.toggle-buttons button {
+    width: 48%;
+    padding: 14px;
+    background-color: #6a1b9a; /* Matching color for toggle buttons */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.toggle-buttons button.active {
+    background-color: #4a148c; /* Darker shade for active button */
+}
+
+.toggle-buttons button:hover {
+    background-color: #4a148c; /* Darker shade on hover */
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 20px;
+        max-width: 90%; /* Adjust form width for tablets */
+    }
+    .admin-form input,
+    .admin-form textarea,
+    .admin-form button {
+        font-size: 0.9rem;
+    }
+    .toggle-buttons button {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-container {
+        padding: 15px;
+    }
+    .admin-form input,
+    .admin-form textarea,
+    .admin-form button {
+        font-size: 0.8rem;
+    }
+    .toggle-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
