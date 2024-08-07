@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import Cart from './components/cart/cart';
 import AdminPanel from './pages/AdminPanel';
+import SignUp from './components/login_details/signup';
+import Login from './components/login_details/login';
 
 const App = () => (
   <Router>
@@ -13,6 +15,8 @@ const App = () => (
       <Route path="/cart" element={<Cart />} />
       <Route path="/adminpanel" element={<AdminPanel />} />
       <Route path="/" element={<Navigate to="/homepage" />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
 );

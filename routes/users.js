@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../config/database');
+
 // Registration route
 router.post('/register', (req, res) => {
     const { username, email, password } = req.body;
@@ -11,9 +12,8 @@ router.post('/register', (req, res) => {
             return res.status(500).send("Error inserting data");
         }
         if (result.affectedRows > 0) {
-            console.log("Data inserted successfully");
             req.session.user = { username, email };
-            res.status(200).send("All Ok");
+            res.status(200).send({ message: "Registration successful" });
         }
     });
 });
@@ -28,13 +28,12 @@ router.post('/login', (req, res) => {
             return res.status(500).send("Error executing query");
         }
         if (result.length > 0) {
-            console.log("Login successful");
             req.session.user = { username, email: result[0].email };
-            res.status(200).send("All Ok");
+            res.status(200).send({ message: "Login successful" });
         } else {
             res.status(401).send("Invalid credentials");
         }
-    });
+    }); 
 });
 
 // Logout route
@@ -46,5 +45,4 @@ router.post('/logout', (req, res) => {
         res.status(200).send("Logged out successfully");
     });
 });
-
 module.exports = router;
