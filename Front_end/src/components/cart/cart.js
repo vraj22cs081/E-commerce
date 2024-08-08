@@ -1,30 +1,32 @@
-// src/components/Cart.js
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Cart = () => {
-  const location = useLocation();
-  const cart = location.state?.cart || [];
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const cart = state?.cart || [];
 
-  const handleOrderPlace = () => {
-    // Logic for placing the order
-    console.log('Order placed');
-    navigate('/homepage');
+  const handleBackToProducts = () => {
+    navigate('/products', { state: { cart } });
   };
-
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div>
       <h2>Cart</h2>
-      {cart.map((item, index) => (
-        <div key={index}>
-          <p>{item.name} - {item.quantity} x ${item.price}</p>
+      {cart.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <div>
+          <ul>
+            {cart.map((item, index) => (
+              <li key={index}>
+                {item.name} - Quantity: {item.quantity} - Price: ${item.price}
+              </li>
+            ))}
+          </ul>
+          <button onClick={handleBackToProducts}>Back to Products</button>
         </div>
-      ))}
-      <h3>Total: ${totalPrice.toFixed(2)}</h3>
-      <button onClick={handleOrderPlace}>Place Order</button>
+      )}
     </div>
   );
 };

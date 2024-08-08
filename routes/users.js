@@ -3,7 +3,7 @@ const router = express.Router();
 const connection = require('../config/database');
 
 // Registration route
-router.post('/register', (req, res) => {
+router.post('/signup', (req, res) => { 
     const { username, email, password } = req.body;
     const sql = "INSERT INTO Users(username, email, password) VALUES (?, ?, ?)";
     connection.query(sql, [username, email, password], (error, result) => {

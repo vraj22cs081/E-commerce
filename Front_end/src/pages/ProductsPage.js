@@ -29,18 +29,31 @@ const ProductsPage = () => {
   }, [categoryId]);
 
   const addToCart = (product, quantity) => {
-    setCart(prevCart => [...prevCart, { ...product, quantity }]);
+    setCart(prevCart => {
+      // Check if the product is already in the cart
+      const isProductInCart = prevCart.some(item => item.id === product.id);
+      if (isProductInCart) {
+        return prevCart; // Do nothing if the product is already in the cart
+      }
+
+      // Add the product to the cart if it's not already there
+      return [...prevCart, { ...product, quantity }];
+    });
   };
 
   const handleCheckout = () => {
     navigate('/cart', { state: { cart } });
   };
 
+  const isAddedToCart = (productId) => {
+    return cart.some(item => item.id === productId);
+  };
+
   return (
     <div>
       <TopNav />
       <Header />
-      <ProductList products={products} addToCart={addToCart} />
+      <ProductList products={products} addToCart={addToCart} isAddedToCart={isAddedToCart} />
       {cart.length > 0 && (
         <button onClick={handleCheckout}>Proceed to Checkout</button>
       )}
