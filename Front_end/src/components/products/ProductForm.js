@@ -40,17 +40,17 @@ const ProductForm = () => {
         <label>Price:</label>
         <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
       </div>
-    <div>
+      <div>
         <label>Description:</label>
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-    </div>
-    <div>
+      </div>
+      <div>
         <label>Stock:</label>
         <input type="text" value={stock} onChange={(e) => setStock(e.target.value)} />
-    </div>
-    <button type="submit">Add Product</button>
+      </div>
+      <button type="submit">Add Product</button>
     </form>
-);
+  );
 };
 
 export default ProductForm;

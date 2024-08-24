@@ -14,7 +14,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:9000/products/all'); // Update the URL if you have an endpoint to fetch products by category
+        const response = await fetch('http://localhost:9000/products/all');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -28,16 +28,21 @@ const ProductsPage = () => {
     fetchProducts();
   }, [categoryId]);
 
-  const addToCart = (product, quantity) => {
+  const handleAddToCart = (product, quantity) => {
     setCart(prevCart => {
-      // Check if the product is already in the cart
-      const isProductInCart = prevCart.some(item => item.id === product.id);
-      if (isProductInCart) {
-        return prevCart; // Do nothing if the product is already in the cart
-      }
+      const existingProduct = prevCart.find(
+        item => item.id === product.id && item.quantity === quantity
+      );
 
-      // Add the product to the cart if it's not already there
-      return [...prevCart, { ...product, quantity }];
+      if (existingProduct) {
+        return prevCart.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity }];
+      }
     });
   };
 
@@ -45,15 +50,11 @@ const ProductsPage = () => {
     navigate('/cart', { state: { cart } });
   };
 
-  const isAddedToCart = (productId) => {
-    return cart.some(item => item.id === productId);
-  };
-
   return (
     <div>
       <TopNav />
       <Header />
-      <ProductList products={products} addToCart={addToCart} isAddedToCart={isAddedToCart} />
+      <ProductList products={products} onAddToCart={handleAddToCart} />
       {cart.length > 0 && (
         <button onClick={handleCheckout}>Proceed to Checkout</button>
       )}

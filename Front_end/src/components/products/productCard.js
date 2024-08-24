@@ -60,7 +60,7 @@ const Price = styled.p`
 `;
 
 const AddToCartButton = styled.button`
-  background-color: ${props => (props.addedToCart ? '#28a745' : props.disabled ? '#ccc' : '#ff8c00')};
+  background-color: ${props => (props.added ? '#28a745' : '#ff8c00')};
   color: #fff;
   border: none;
   padding: 10px;
@@ -69,12 +69,20 @@ const AddToCartButton = styled.button`
   margin-top: 10px;
 
   &:hover {
-    background-color: ${props => (props.disabled ? '#ccc' : props.addedToCart ? '#218838' : '#ffa500')};
+    background-color: ${props => (props.added ? '#218838' : '#ffa500')};
   }
 `;
 
-const ProductCard = ({ product, addToCart, addedToCart }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(0);
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      onAddToCart(product, quantity);
+      setAddedToCart(true);
+    }
+  };
 
   return (
     <Card>
@@ -88,8 +96,8 @@ const ProductCard = ({ product, addToCart, addedToCart }) => {
         <QuantityControl quantity={quantity} setQuantity={setQuantity} />
         <AddToCartButton
           disabled={quantity === 0 || addedToCart}
-          addedToCart={addedToCart}
-          onClick={() => addToCart(product, quantity)}
+          onClick={handleAddToCart}
+          added={addedToCart} 
         >
           {addedToCart ? 'Added to Cart' : 'Add to Cart'}
         </AddToCartButton>

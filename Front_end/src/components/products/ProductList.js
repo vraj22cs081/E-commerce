@@ -8,14 +8,13 @@ const List = styled.div`
   justify-content: space-around;
 `;
 
-const ProductList = ({ products, addToCart, isAddedToCart }) => (
+const ProductList = ({ products, onAddToCart }) => (
   <List>
     {products.map(product => (
       <ProductCard
         key={product.id}
         product={product}
-        addToCart={addToCart}
-        addedToCart={isAddedToCart(product.id)}
+        onAddToCart={onAddToCart}
       />
     ))}
   </List>
