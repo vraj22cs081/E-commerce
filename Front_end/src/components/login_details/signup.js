@@ -34,7 +34,7 @@ function Signup() {
       });
 
       if (response.ok) {
-        navigate('/homepage');
+        navigate('/login');
       } else {
         console.error('Signup failed');
       }
@@ -74,6 +74,7 @@ function Signup() {
           onChange={handleEmailChange}
         />
         <input type="submit" className="button" value="Signup" />
+        <a href="/login">Already register</a>
       </form>
       <div className="help-text">
         <p>

@@ -10,13 +10,12 @@ import Login from './components/login_details/login';
 const App = () => (
   <Router>
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<SignUp />} />
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/adminpanel" element={<AdminPanel />} />
-      <Route path="/" element={<Navigate to="/homepage" />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
 );

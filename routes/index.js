@@ -7,4 +7,4 @@ router.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../public/src/pages/HomePage.js'));
 });
 
-module.exports = router; 
+module.exports = router;

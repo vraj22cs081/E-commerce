@@ -12,7 +12,6 @@ router.post('/signup', (req, res) => {
             return res.status(500).send("Error inserting data");
         }
         if (result.affectedRows > 0) {
-            req.session.user = { username, email };
             res.status(200).send({ message: "Registration successful" });
         }
     });
@@ -28,13 +27,30 @@ router.post('/login', (req, res) => {
             return res.status(500).send("Error executing query");
         }
         if (result.length > 0) {
-            req.session.user = { username, email: result[0].email };
-            res.status(200).send({ message: "Login successful" });
+            const { user_id, email } = result[0];
+            req.session.user = { user_id, username, email };
+            req.session.save(err => {
+                if (err) {
+                    console.error("Error saving session:", err);
+                    return res.status(500).send("Error saving session");
+                }
+                console.log("Session created:", req.session.user);
+                res.status(200).send({ message: "Login successful" });
+            });
+            // loggedInUserId=req.session.user;
+            // console.log(loggedInUserId.user_id);
+            // loggedInUserId1=loggedInUserId.user_id;
+            // console.log(loggedInUserId1);
+            // // console.log(loggedInUserId);
+            // console.log("Session created:", req.session.user?.user_id); // Debug statement
+            // res.status(200).send({ message: "Login successful" });
         } else {
-            res.status(401).send("Invalid credentials");
+            res.status(401).send("Invalid credentials"); 
         }
     }); 
 });
+
+
 
 // Logout route
 router.post('/logout', (req, res) => {

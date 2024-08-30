@@ -32,4 +32,29 @@ router.post('/update-product', (req, res) => {
     });
 });
 
+// Route to get all registered users
+router.get('/users', (req, res) => {
+    const sql = 'SELECT * FROM Users';
+    
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching users:', err);
+            return res.status(500).json({ error: 'Error fetching users' });
+        }
+        res.json(results);
+    });
+});
+
+// Route to get all product information
+router.get('/products', (req, res) => {
+    const sql = 'SELECT * FROM Products';
+    
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching products:', err);
+            return res.status(500).json({ error: 'Error fetching products' });
+        }
+        res.json(results);
+    });
+});
 module.exports = router;
