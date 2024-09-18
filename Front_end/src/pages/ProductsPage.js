@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductList from '../components/products/ProductList';
-import TopNav from '../components/home/TopNav';
+// import TopNav from '../components/home/TopNav';
 import Header from '../components/home/Header';
 import Footer from '../components/home/Footer';
 
@@ -29,22 +29,32 @@ const ProductsPage = () => {
   }, [categoryId]);
 
   const handleAddToCart = (product, quantity) => {
+    console.log('Adding to cart:', product, quantity);
+  
     setCart(prevCart => {
-      const existingProduct = prevCart.find(
-        item => item.id === product.id && item.quantity === quantity
-      );
-
-      if (existingProduct) {
-        return prevCart.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
+      // Create a new array to avoid mutating state directly
+      const updatedCart = [...prevCart];
+      
+      // Find if the product is already in the cart
+      const productIndex = updatedCart.findIndex(item => item.product_id === product.product_id);
+  
+      if (productIndex >= 0) {
+        // Update quantity if the product is already in the cart
+        updatedCart[productIndex] = {
+          ...updatedCart[productIndex],
+          quantity: updatedCart[productIndex].quantity + quantity
+        };
       } else {
-        return [...prevCart, { ...product, quantity }];
+        // Add new product to the cart
+        updatedCart.push({ ...product, quantity });
       }
+  
+      console.log('Updated cart:', updatedCart);
+      return updatedCart;
     });
   };
+  
+  
 
   const handleCheckout = () => {
     navigate('/cart', { state: { cart } });
@@ -52,7 +62,7 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <TopNav />
+      {/* <TopNav /> */}
       <Header />
       <ProductList products={products} onAddToCart={handleAddToCart} />
       {cart.length > 0 && (
@@ -63,4 +73,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductsPage; 

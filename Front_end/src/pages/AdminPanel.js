@@ -7,7 +7,8 @@ const AdminPanel = () => {
         name: '',
         description: '',
         price: '',
-        stock: ''
+        stock: '',
+        image: null 
     });
     const [isUpdateMode, setIsUpdateMode] = useState(false);
     const [activeTab, setActiveTab] = useState('addProduct');
@@ -24,17 +25,24 @@ const AdminPanel = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formDataToSend = new FormData();
+        formDataToSend.append('id', formData.id);
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('description', formData.description);
+        formDataToSend.append('price', formData.price);
+        formDataToSend.append('stock', formData.stock);
+        formDataToSend.append('image', formData.image);    
+
         const url = isUpdateMode
             ? 'http://localhost:9000/admin/update-product'
             : 'http://localhost:9000/admin/add-product';
 
+
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                body: formDataToSend
             });
 
             if (!response.ok) {
@@ -88,6 +96,14 @@ const AdminPanel = () => {
 
         fetchData();
     }, [activeTab]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({
+            ...formData,
+            image: file
+        });
+    };
 
     const renderForm = () => (
         <form onSubmit={handleSubmit} className="admin-form">
@@ -143,6 +159,16 @@ const AdminPanel = () => {
                     required
                 />
             </label>
+            <label>
+            Product Image:
+            <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                required={!isUpdateMode}
+            />
+        </label>
             <button type="submit" className="submit-btn">
                 {isUpdateMode ? 'Update Product' : 'Add Product'}
             </button>

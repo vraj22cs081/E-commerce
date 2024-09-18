@@ -12,7 +12,7 @@ const ProductList = ({ products, onAddToCart }) => (
   <List>
     {products.map(product => (
       <ProductCard
-        key={product.id}
+        key={product.product_id}
         product={product}
         onAddToCart={onAddToCart}
       />

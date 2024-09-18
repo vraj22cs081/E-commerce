@@ -14,7 +14,7 @@ router.post('/signup', (req, res) => {
         if (result.affectedRows > 0) {
             res.status(200).send({ message: "Registration successful" });
         }
-    });
+    }); 
 });
 
 // Login route
@@ -27,30 +27,21 @@ router.post('/login', (req, res) => {
             return res.status(500).send("Error executing query");
         }
         if (result.length > 0) {
-            const { user_id, email } = result[0];
-            req.session.user = { user_id, username, email };
+            const { user_id ,email } = result[0];
+            req.session.user_id = user_id; 
+            req.session.email = email;
             req.session.save(err => {
                 if (err) {
                     console.error("Error saving session:", err);
                     return res.status(500).send("Error saving session");
                 }
-                console.log("Session created:", req.session.user);
-                res.status(200).send({ message: "Login successful" });
+                res.status(200).send({ message: 'Login successful', user_id: user_id, email: email });
             });
-            // loggedInUserId=req.session.user;
-            // console.log(loggedInUserId.user_id);
-            // loggedInUserId1=loggedInUserId.user_id;
-            // console.log(loggedInUserId1);
-            // // console.log(loggedInUserId);
-            // console.log("Session created:", req.session.user?.user_id); // Debug statement
-            // res.status(200).send({ message: "Login successful" });
         } else {
             res.status(401).send("Invalid credentials"); 
         }
     }); 
 });
-
-
 
 // Logout route
 router.post('/logout', (req, res) => {
@@ -58,7 +49,8 @@ router.post('/logout', (req, res) => {
         if (err) {
             return res.status(500).send("Error logging out");
         }
-        res.status(200).send("Logged out successfully");
+        res.status(200).send({ message: "Logged out successfully", redirect: '/login' });
     });
 });
+
 module.exports = router;

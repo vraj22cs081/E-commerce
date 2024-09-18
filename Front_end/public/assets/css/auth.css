@@ -1,0 +1,233 @@
+/* Auth.css */
+
+/* Overall Container */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffffff; /* White background */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bubble Design */
+.auth-container::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(82, 189, 109, 0.5) 20%, rgba(0,0,255,0.2) 60%);
+    z-index: 0;
+    opacity: 0.4;
+    pointer-events: none; /* Ensure it does not interfere with clicks */
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+/* Company Name */
+.company-name {
+    text-align: center;
+    margin-bottom: 2rem; /* Adjust spacing as needed */
+    z-index: 1; /* Ensure it's above the bubble design */
+}
+
+.company-name h1 {
+    font-size: 2.5rem; /* Default font size */
+    font-weight: 700; /* Make it bold */
+    color: #59ab6e; /* Green color for the company name */
+    text-transform: uppercase; /* Capitalize the text */
+    letter-spacing: 2px; /* Add spacing between letters */
+    margin: 0; /* Remove default margin */
+    padding: 0.5rem; /* Add some padding */
+    border-radius: 5px; /* Optional: Rounded corners */
+}
+
+.auth-form-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1; /* Ensure it's above the bubble design */
+    transition: height 0.3s ease, padding 0.3s ease; /* Smooth transition */
+    overflow: hidden; /* Hide overflow to prevent visible content */
+}
+
+.auth-form-container.expanded {
+    height: auto; /* Expand height based on content */
+    padding-bottom: 40px; /* Adjust padding if needed */
+}
+
+/* Form transition */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+/* Button switch styles */
+.auth-switch-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Button switch styles */
+.auth-switch-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.auth-switch-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 0; /* Remove margin */
+}
+
+.auth-switch-button:last-child {
+    margin-right: 0; /* Ensure no margin on the last button */
+}
+
+.auth-switch-button.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* Input styles */
+.auth-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.auth-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Checkbox styles */
+.auth-checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.auth-checkbox {
+    margin-right: 10px;
+}
+
+.auth-label {
+    font-size: 0.9rem;
+}
+
+/* Button container styles */
+.auth-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Submit button styles */
+.auth-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.auth-button:hover {
+    background-color: #0056b3;
+}
+
+/* Link styles */
+.auth-link {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* Help text styles */
+.auth-help-text {
+    text-align: center;
+}
+
+.auth-help-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-help-text a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    .company-name h1 {
+        font-size: 2rem; /* Slightly smaller font size */
+        letter-spacing: 1.5px; /* Adjust letter spacing */
+        padding: 0.3rem; /* Adjust padding */
+    }
+
+    .auth-form-container {
+        width: 95%; /* Make form container more responsive */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .auth-switch-container {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .auth-switch-button {
+        margin-bottom: 10px; /* Adjust margin for stacked buttons */
+    }
+
+    .auth-switch-button:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+    .company-name h1 {
+        font-size: 1.5rem; /* Even smaller font size for mobile */
+        letter-spacing: 1px; /* Adjust letter spacing */
+        padding: 0.2rem; /* Adjust padding */
+    }
+
+    .auth-form-container {
+        width: 100%; /* Full width for mobile */
+        padding: 10px; /* Adjust padding */
+    }
+}

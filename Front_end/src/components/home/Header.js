@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { scroller } from 'react-scroll';
 
 function Header() {
+  const navigate = useNavigate();
+
   const handleScrollToFooter = () => {
     scroller.scrollTo('footer', {
       duration: 800,
@@ -17,6 +19,30 @@ function Header() {
       delay: 0,
       smooth: 'easeInOutQuart'
     });
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:9000/users/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Ensure cookies are included for session management
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Logout failed:', errorData);
+        alert('Logout failed: ' + errorData.message);
+      } else {
+        alert('Logout successful!');
+        navigate('/login'); // Redirect to login page after logout
+      }
+    } catch (error) {
+      console.error('An error occurred during logout:', error);
+      alert('An error occurred during logout. Please try again later.');
+    }
   };
 
   return (
@@ -68,7 +94,9 @@ function Header() {
             </ul>
           </div>
           <div className="navbar align-self-center d-flex">
-            {/* Navbar icons */}
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
       </div>

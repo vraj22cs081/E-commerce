@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import QuantityControl from './QuntityControl';
+import QuantityControl from './QuntityControl'; 
 
 const Card = styled.div`
   display: flex;
@@ -59,7 +59,9 @@ const Price = styled.p`
   color: #000;
 `;
 
-const AddToCartButton = styled.button`
+const AddToCartButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['added', 'disabled'].includes(prop)
+})`
   background-color: ${props => (props.added ? '#28a745' : '#ff8c00')};
   color: #fff;
   border: none;
@@ -79,7 +81,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      onAddToCart(product, quantity);
+      onAddToCart(product, quantity); // Pass product and quantity
       setAddedToCart(true);
     }
   };
@@ -87,7 +89,7 @@ const ProductCard = ({ product, onAddToCart }) => {
   return (
     <Card>
       <ImageWrapper>
-        <Image src={product.image_url} alt={product.name} />
+        <Image src={`http://localhost:9000/uploads/${product.image}`} alt={product.name} />
       </ImageWrapper>
       <Content>
         <Title>{product.name}</Title>
@@ -97,7 +99,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         <AddToCartButton
           disabled={quantity === 0 || addedToCart}
           onClick={handleAddToCart}
-          added={addedToCart} 
+          added={addedToCart}
         >
           {addedToCart ? 'Added to Cart' : 'Add to Cart'}
         </AddToCartButton>

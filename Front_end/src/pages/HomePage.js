@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="App">
-      <TopNav />
+    
       <Header />
       <HeroCarousel />
       <Element name="categories">
