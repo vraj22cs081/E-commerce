@@ -1,6 +1,7 @@
 # Node modules in both root and frontend directory
 /node_modules
 /Front_end/node_modules
+.env
 
 # Logs
 logs

@@ -5,7 +5,7 @@ const logger = require('morgan');
 const session = require('express-session');
 const cors = require('cors');
 const createError = require('http-errors');
-
+require('dotenv').config(); // Load environment variables from .env
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -14,6 +14,11 @@ const adminRouter = require('./routes/admin');
 const orderRouter = require('./routes/order');
 const invoiceRoute = require('./routes/invoice');
 const isAuthenticated = require('./routes/authMiddleware'); 
+
+const sessionSecret = process.env.SESSION_SECRET;
+const corsOrigin = process.env.CORS_ORIGIN;
+const port = process.env.PORT || 9000; // Default to 9000 if not set in .env
+
 const app = express();
 
 // view engine setup
@@ -27,26 +32,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); 
 
-
 // Session middleware should be set up before the routes
 app.use(session({
-  secret: 'secret',
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
-}))
+  cookie: { secure: app.get('env') === 'production' }
+}));
 
-
+// CORS middleware for development/production
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: corsOrigin,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   preflightContinue: false,
   optionsSuccessStatus: 204
 }));
-
-
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -54,7 +55,6 @@ app.use('/products', productsRouter);
 app.use('/admin', adminRouter);
 app.use('/order', orderRouter);
 app.use('/order', invoiceRoute);
-
 
 // Protected routes
 app.get('/homepage', isAuthenticated, (req, res) => {
@@ -72,6 +72,10 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
 module.exports = app;
