@@ -67,7 +67,7 @@ function Login() {
           </div>
         </form>
         <div className="auth-help-text">
-          <p><a href="#">Forget your password?</a></p>
+          {/* <p><a href="#">Forget your password?</a></p> */}
         </div>
       </div>
     </div>

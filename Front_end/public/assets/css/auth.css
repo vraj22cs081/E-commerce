@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     height: 100vh;
     background-color: #ffffff; /* White background */
     position: relative;
@@ -26,6 +26,7 @@
     pointer-events: none; /* Ensure it does not interfere with clicks */
     border-radius: 50%;
     transform: rotate(-30deg);
+ 
 }
 
 /* Company Name */
@@ -33,6 +34,8 @@
     text-align: center;
     margin-bottom: 2rem; /* Adjust spacing as needed */
     z-index: 1; /* Ensure it's above the bubble design */
+    margin-top: 100px;
+
 }
 
 .company-name h1 {

@@ -4,11 +4,11 @@ const db = require('../config/database');
 const nodemailer = require('nodemailer');
 
 // Configure nodemailer transport
-const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({ 
     service: 'gmail',
     auth: {
         user: 'vs1010792@gmail.com',
-        pass: 'pinh bbqg rgoo jiqg',
+        pass: 'pinh bbqg rgoo jiqg', 
     },
 });
 
