@@ -8,22 +8,18 @@ function Footer() {
           <div className="col-md-4 pt-5">
             <h2 className="h2 text-success border-bottom pb-3 border-light logo">Maruti Enterprise</h2>
             <ul className="list-unstyled text-light footer-link-list">
-              <li><i className="fas fa-map-marker-alt fa-fw"></i> Maruti Enterprise, Maheshwar Road</li>
-              <li><i className="fa fa-phone fa-fw"></i> <a className="text-decoration-none" href="tel:010-020-0340">010-020-0340</a></li>
-              <li><i className="fa fa-envelope fa-fw"></i> <a className="text-decoration-none" href="mailto:info@company.com">info@company.com</a></li>
+              <li><i className="fas fa-map-marker-alt fa-fw"></i> Maruti Enterprise,College Road,Santrampur</li>
+              <li><i className="fa fa-phone fa-fw"></i>02675-299219</li>
+              <li><i className="fa fa-envelope fa-fw"></i>MarutiEnterprise@gmail.com</li>
             </ul>
           </div>
 
           <div className="col-md-4 pt-5">
             <h2 className="h2 text-light border-bottom pb-3 border-light">Products</h2>
             <ul className="list-unstyled text-light footer-link-list">
-              <li><a className="text-decoration-none" href="#">Luxury</a></li>
-              <li><a className="text-decoration-none" href="#">Sport Wear</a></li>
-              <li><a className="text-decoration-none" href="#">Men's Shoes</a></li>
-              <li><a className="text-decoration-none" href="#">Women's Shoes</a></li>
-              <li><a className="text-decoration-none" href="#">Popular Dress</a></li>
-              <li><a className="text-decoration-none" href="#">Gym Accessories</a></li>
-              <li><a className="text-decoration-none" href="#">Sport Shoes</a></li>
+              <li><a className="text-decoration-none" href="#">Fortune Oil</a></li>
+              <li><a className="text-decoration-none" href="#">Talod Intant</a></li>
+              <li><a className="text-decoration-none" href="#">Ghadi Powder</a></li>
             </ul>
           </div>
 
@@ -32,7 +28,7 @@ function Footer() {
             <ul className="list-unstyled text-light footer-link-list">
               <li><a className="text-decoration-none" href="#">Home</a></li>
               <li><a className="text-decoration-none" href="#">About Us</a></li>
-              <li><a className="text-decoration-none" href="#">Shop Locations</a></li>
+              <li><a className="text-decoration-none" href="https://maps.app.goo.gl/rhN7NCZBPF2L3Pq18">Shop Locations</a></li>
               <li><a className="text-decoration-none" href="#">FAQs</a></li>
               <li><a className="text-decoration-none" href="#">Contact</a></li>
             </ul>
@@ -64,7 +60,7 @@ function Footer() {
             <div className="row pt-2">
               <div className="col-12">
                 <p className="text-left text-light">
-                  © 2021 Company Name | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                  © 2004 Maruti Enterprise | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">Vraj And Utsav</a>
                 </p>
               </div>
             </div>

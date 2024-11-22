@@ -8,23 +8,23 @@ const Categories = ({ onGoShop }) => (
       </div>
     </div>
     <div className="row">
-      <div className="col-12 col-md-4 p-5 mt-3">
-        <a href="#"><img src="/assets/img/category_img_01.jpg" className="rounded-circle img-fluid border" alt="Watches" /></a>
-        <h5 className="text-center mt-3 mb-3">Watches</h5>
+      <div className="col-12 col-md-4 p-5 mt-3" onClick={onGoShop}>
+        <a href="#"><img src="/assets/company_logo/fortune.png" className="rounded-circle img-fluid border"/></a>
+        <h3 className="text-center mt-3 mb-3">Fortune</h3>
         <p className="text-center">
           <button className="btn btn-success" onClick={onGoShop}>Go Shop</button>
         </p>
       </div>
-      <div className="col-12 col-md-4 p-5 mt-3">
-        <a href="#"><img src="/assets/img/category_img_02.jpg" className="rounded-circle img-fluid border" alt="Shoes" /></a>
-        <h2 className="h5 text-center mt-3 mb-3">Shoes</h2>
+      <div className="col-12 col-md-4 p-5 mt-3" >
+        <a href="#"><img src="/assets/company_logo/talod2.png" className="rounded-circle img-fluid border" /></a>
+        <h3 className="text-center mt-3 mb-3">Talod</h3>
         <p className="text-center">
           <button className="btn btn-success" disabled>Go Shop</button>
         </p>
       </div>
       <div className="col-12 col-md-4 p-5 mt-3">
-        <a href="#"><img src="/assets/img/category_img_03.jpg" className="rounded-circle img-fluid border" alt="Accessories" /></a>
-        <h2 className="h5 text-center mt-3 mb-3">Accessories</h2>
+        <a href="#"><img src="/assets/company_logo/ghadi.png" className="rounded-circle img-fluid border" /></a>
+        <h3 className="text-center mt-3 mb-3">Ghadi</h3>
         <p className="text-center">
           <button className="btn btn-success" disabled>Go Shop</button>
         </p>

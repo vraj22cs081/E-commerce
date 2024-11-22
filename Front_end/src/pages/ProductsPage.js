@@ -2,8 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductList from '../components/products/ProductList';
 // import TopNav from '../components/home/TopNav';
-import Header from '../components/home/Header';
+import Product_Header from '../components/products/Product_Header';
 import Footer from '../components/home/Footer';
+import styled from 'styled-components';
+
+const CheckoutButton = styled.button`
+  background-color: #28a745; /* Success button color */
+  color: white;
+  padding: 10px 20px;
+  margin: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  
+  &:hover {
+    background-color: #218838; /* Darker shade on hover */
+  }
+`;
 
 const ProductsPage = () => {
   const { categoryId } = useParams();
@@ -32,20 +49,15 @@ const ProductsPage = () => {
     console.log('Adding to cart:', product, quantity);
   
     setCart(prevCart => {
-      // Create a new array to avoid mutating state directly
       const updatedCart = [...prevCart];
-      
-      // Find if the product is already in the cart
       const productIndex = updatedCart.findIndex(item => item.product_id === product.product_id);
   
       if (productIndex >= 0) {
-        // Update quantity if the product is already in the cart
         updatedCart[productIndex] = {
           ...updatedCart[productIndex],
           quantity: updatedCart[productIndex].quantity + quantity
         };
       } else {
-        // Add new product to the cart
         updatedCart.push({ ...product, quantity });
       }
   
@@ -53,8 +65,6 @@ const ProductsPage = () => {
       return updatedCart;
     });
   };
-  
-  
 
   const handleCheckout = () => {
     navigate('/cart', { state: { cart } });
@@ -63,14 +73,18 @@ const ProductsPage = () => {
   return (
     <div>
       {/* <TopNav /> */}
-      <Header />
+      <Product_Header />
       <ProductList products={products} onAddToCart={handleAddToCart} />
       {cart.length > 0 && (
-        <button onClick={handleCheckout}>Proceed to Checkout</button>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <CheckoutButton onClick={handleCheckout}>
+            Proceed to Checkout
+          </CheckoutButton>
+        </div>
       )}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
 
-export default ProductsPage; 
+export default ProductsPage;

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PageBackground = styled.div`
-  background-color: #f1f1f1; /* Light gray background for the page */
+  background-color: #fffff; /* Light gray background for the page */
   min-height: 100vh; /* Full height */
   padding: 40px 0; /* Add some padding to space out the cart */
 `;
@@ -13,21 +13,23 @@ const CartContainer = styled.div`
   margin: 0 auto;
   padding: 30px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #4d6882 0%, #6a88a5 100%); 
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  background-color: rgb(159 159 229 / 20%);
+
+  border: 5px solid black;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
 `;
 
 const CartHeader = styled.h2`
   text-align: center;
   font-size: 2.4rem;
   margin-bottom: 30px;
-  color: #fff;
+  color: ;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background-color: #394f6d; /* Dark blue header */
   padding: 15px;
   border-radius: 10px;
+  border: 3px solid black;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -43,16 +45,11 @@ const CartItem = styled.li`
   padding: 15px 0;
   border-bottom: 2px solid #7a8ba0;
   transition: transform 0.3s ease;
+  border: 3px solid black;
+  border-radius: 12px;
 
-  &:hover {
-    transform: translateY(-5px);
-    background-color: #556780;
-    border-radius: 10px;
-  }
+  
 
-  &:last-child {
-    border-bottom: none;
-  }
 `;
 
 const CartItemDetails = styled.div`
@@ -64,27 +61,24 @@ const CartItemDetails = styled.div`
 const CartItemName = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
-  color: #fff;
-  background-color: #4a617b; /* Slightly lighter than background */
+  color: black;
   padding: 8px 15px;
   border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const CartItemQuantity = styled.span`
-  color: #d4d9e2;
+  color: black;
   font-size: 1rem;
+  padding: 8px 15px;
   margin-top: 5px;
 `;
 
 const CartItemPrice = styled.span`
   font-size: 1.2rem;
-  color: #fff;
+  color: black;
   font-weight: 600;
-  background-color: #4a617b; /* Slightly lighter than background */
   padding: 8px 15px;
   border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const TotalPrice = styled.div`
@@ -92,10 +86,10 @@ const TotalPrice = styled.div`
   font-size: 1.6rem;
   font-weight: bold;
   text-align: right;
-  color: #fff;
-  background-color: #394f6d;
+  color: black;
+  border: 3px solid black;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
@@ -244,11 +238,11 @@ const Cart = () => {
                     <CartItemName>{item.name}</CartItemName>
                     <CartItemQuantity>Quantity: {item.quantity}</CartItemQuantity>
                   </CartItemDetails>
-                  <CartItemPrice>${item.price * item.quantity}</CartItemPrice>
+                  <CartItemPrice>₹{item.price * item.quantity}</CartItemPrice>
                 </CartItem>
               ))}
             </CartList>
-            <TotalPrice>Total: ${total_price.toFixed(2)}</TotalPrice>
+            <TotalPrice>Total: ₹{total_price.toFixed(2)}</TotalPrice>
             <ButtonContainer>
               <BackButton onClick={handleBackToProducts}>Back to Products</BackButton>
               <ConfirmButton onClick={handleConfirmOrder}>Confirm Order</ConfirmButton>

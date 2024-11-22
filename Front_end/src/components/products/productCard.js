@@ -8,6 +8,7 @@ const Card = styled.div`
   border: 1px solid var(--nord3);
   border-radius: 8px;
   background-color: #ffffff;
+  border-color: black;
   color: var(--nord6);
   margin: 10px;
   width: 1200px;
@@ -17,8 +18,8 @@ const Card = styled.div`
 
 const ImageWrapper = styled.div`
   flex: 1;
-  background-color: #e0e0e0;
   border-radius: 8px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +55,7 @@ const Details = styled.p`
 `;
 
 const Price = styled.p`
-  font-size: 1.2em;
+  font-style: large;
   font-weight: bold;
   color: #000;
 `;
@@ -94,7 +95,7 @@ const ProductCard = ({ product, onAddToCart }) => {
       <Content>
         <Title>{product.name}</Title>
         <Details>{product.description}</Details>
-        <Price>Price: ${product.price}</Price>
+        <Price><h3> Price: ₹{product.price} </h3></Price>
         <QuantityControl quantity={quantity} setQuantity={setQuantity} />
         <AddToCartButton
           disabled={quantity === 0 || addedToCart}

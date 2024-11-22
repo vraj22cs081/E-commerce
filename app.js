@@ -5,7 +5,10 @@ const logger = require('morgan');
 const session = require('express-session');
 const cors = require('cors');
 const createError = require('http-errors');
+require('dotenv').config();
 
+const sessionSecret = process.env.SESSION_SECRET;
+const corsOrigin = process.env.CORS_ORIGIN;
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -30,15 +33,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Session middleware should be set up before the routes
 app.use(session({
-  secret: 'secret',
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
+  cookie: { secure: app.get('env') === 'production' }
 }))
 
 
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204
+// }));
+
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: corsOrigin,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   preflightContinue: false,
